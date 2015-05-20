@@ -1,0 +1,13 @@
+Fabric==1.10.0
+Jinja==1.2
+Jinja2==2.7.3
+MarkupSafe==0.23
+argparse==1.2.1
+ecdsa==0.11
+paramiko==1.15.1
+pycrypto==2.6.1
+requests==2.6.0
+retrying==1.2.3
+simplejson==3.6.3
+wsgiref==0.1.2
+-e git+https://github.com/l-vincent-l/fabtools.git@d761249e66d02421abefddf14f221c9df15d69de#egg=fabtools-master

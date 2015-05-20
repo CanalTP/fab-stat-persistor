@@ -1,0 +1,31 @@
+{
+"database": {"connection-string": "postgresql://{{env.postgresql_user}}:{{env.postgresql_password}}@{{env.postgresql_database_host}}/{{env.postgresql_database}}"},
+"exchange-name": "{{env.broker_exchange}}",
+"queue-name": "{{env.broker_queue}}",
+"broker-url": "amqp://{{env.persistor_broker_username}}:{{env.persistor_broker_password}}@{{env.rabbitmq_host}}:{{env.rabbitmq_port}}//",
+"logger": {
+"version": 1,
+"disable_existing_loggers": "False",
+"formatters": {
+    "default": {
+    "format": "[%(asctime)s] [%(levelname)5s] [%(process)5s] [%(name)10s] %(message)s"
+    }
+},
+"handlers": {
+    "default": {
+    "level": "INFO",
+    "class": "logging.handlers.RotatingFileHandler",
+        "filename": "{{env.log_file}}",
+    "formatter": "default"
+    }
+},
+"loggers": {
+    "": {
+    "handlers": ["default"],
+    "level": "INFO",
+                "propagate": "True"
+            }
+        }
+   }
+}
+

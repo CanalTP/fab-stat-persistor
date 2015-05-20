@@ -1,0 +1,4 @@
+*.pyc
+repo
+source.tar.gz
+venv
