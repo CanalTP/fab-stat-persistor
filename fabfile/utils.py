@@ -11,6 +11,7 @@ def _upload_template(filename, destination, context=None, chown=True, user='www-
     kwargs['chown'] = chown
     kwargs['user'] = user
     kwargs['use_sudo'] = True
+    kwargs['backup'] = False
     upload_template(filename, destination, **kwargs)
 
 

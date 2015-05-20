@@ -39,8 +39,10 @@ def init():
 def init_app():
     require.files.directories([env.deploy_to, '{}/releases'.format(env.deploy_to), env.log_dir], owner=env.USER)
     require.deb.packages([
-        'unzip',
         'python2.7',
+        'python-psycopg2',
+        'sudo',
+        'protobuf-compiler',
         ])
     utils._upload_template('stat_persistor.jinja', '/etc/init.d/stat_persistor', mode='755',
                      context={
@@ -92,7 +94,7 @@ def upload_source(tar):
 @roles('app')
 def update_dependancy():
     with cd(env.release):
-        run('pip install -r requirements.txt')
+        require.python.requirements('requirements.txt')
         run('python setup.py build_pbf')
 
 @task
