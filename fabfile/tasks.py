@@ -6,7 +6,7 @@ from fabfile import utils
 from fabfile.component import db
 from fabric.contrib.files import exists
 from time import sleep
-from fabtools import service, require
+from fabtools import service, require, deb, files
 import os, datetime
 
 @task
@@ -148,3 +148,17 @@ def stat_persistor_status():
         run("service stat_persistor status")
     else:
         print(yellow("WARNING: /etc/init.d/stat_persistor does not exists."))
+
+@task
+@roles('app')
+def remove_old_install():
+    """
+    remove old packages from navitia
+    """
+    if deb.is_installed('navitia-stat-persistor'):
+        execute(stop_stat_persistor)
+        deb.uninstall('navitia-stat-persistor', purge=True)
+        files.remove('/srv/stat_persistor/alembic.ini')
+        files.remove('/srv/stat_persistor/stat_persistor.json')
+    else:
+        print yellow('No old installation detected')
