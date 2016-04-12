@@ -78,9 +78,15 @@ def build_tar(repo, branch):
     return output
 
 @task
+@runs_once
+def init_release():
+    env.release = '{}/releases/{}'.format(env.deploy_to, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+
+
+@task
 @roles('app')
 def create_release():
-    env.release = '{}/releases/{}'.format(env.deploy_to, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+    execute(init_release)
     require.files.directory(env.release, owner=env.USER)
 
 @task
