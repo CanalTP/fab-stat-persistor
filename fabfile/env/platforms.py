@@ -16,7 +16,7 @@ env.postgis_dir = '/usr/share/postgresql/9.1/contrib/postgis-1.5'
 env.rabbitmq_host = 'localhost'
 env.rabbitmq_port = 5672
 
-env.broker_exchange = 'stat_persistor_exchange'
+env.broker_exchange = 'stat_persistor_exchange_topic'
 
 env.broker_username = 'guest'
 env.broker_password = 'guest'
