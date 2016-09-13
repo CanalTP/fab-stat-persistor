@@ -30,7 +30,7 @@ def postgis_initdb(instance_db):
                  '--file {}/postgis.sql'.format(instance_db, env.postgis_dir))
             sudo('psql --set ON_ERROR_STOP=1 --dbname={}'
                 ' --file {}/spatial_ref_sys.sql'.format(instance_db, env.postgis_dir))
-    elif psql_version[0:2] == ["9", "3"]:
+    elif psql_version[0:2] > ["9", "1"]:
         with settings(sudo_user='postgres'):
             sudo('psql -c "CREATE EXTENSION  IF NOT EXISTS postgis;" --dbname={}'.format(instance_db))
     else:

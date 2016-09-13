@@ -55,7 +55,6 @@ def init_db():
     require.postgres.server()
     require.deb.packages([
         'postgis',
-        'postgresql-9.1-postgis',
         'sudo',
     ])
     require.postgres.user(env.postgresql_user, env.postgresql_password)
